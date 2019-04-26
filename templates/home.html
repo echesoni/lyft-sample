@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lyft Technical Sample</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Materialize Icons -->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- Link for Stylesheet -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+  <div class="content-wrapper">
+
+    <div class="instructions-wrapper">
+      <p>Please enter a message in the textbox below, then click "SEND" to see the response.</p>
+    </div>
+
+      <div class="form-wrapper">
+        <form method="POST" action="{{ url_for('home') }}">
+          {{ form.csrf_token }}
+          <label class="control-label" for="text_message">enter message</label>
+          {{ form.text_message }}
+          <button class="btn waves-effect waves-light" type="submit" name="action"><input type="submit" value="">Send<i class="material-icons right">send</i></button>
+        </form>
+    </div>
+
+    <div class="response-wrapper">
+      <div class="response-title"><p>Your response:</p></div>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li><p>{{ message }}</p></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+  </div>
+</body>
+</html>
