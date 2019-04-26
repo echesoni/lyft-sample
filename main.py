@@ -9,9 +9,6 @@ config.read('config.ini')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config['DEFAULT']['SECRET_KEY']
 
-# app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", default=None)
-# if not SECRET_KEY:
-#     raise ValueError("No secret key set for Flask application")
 
 class TextMessageForm(FlaskForm):
     text_message = TextField('text_message')
